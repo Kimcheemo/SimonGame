@@ -10,15 +10,16 @@ var bool = false; // used to say if user input was correct or not
 // using .one only takes in the first keypress
 // but we need to restart when game over so we need to make an if statement and not use .one
 $(document).on("keypress", function() {
+  
+  // if user keeps pressing buttons BEFORE they start or AFTER losing, statement will restart userClickedPattern
+  if(userClickedPattern.length > 0){
+    userClickedPattern = [];
+  }
+  
   if (!started) {
     $("h1").text("Level " + level);
     nextSequence();
     started = true;
-
-    // if user keeps pressing buttons after they lost this statement will run and restart the array
-    if(userClickedPattern.length > 0){
-      userClickedPattern = [];
-    }
   }
 });
 
